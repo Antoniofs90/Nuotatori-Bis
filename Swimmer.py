@@ -56,8 +56,11 @@ class Swimmer(object):
 
     @staticmethod
     def get_partecipation_year(d):
-        """prende in input una data formattata "%d/%m/%Y" e decide a che anno di partecipazione"""
-        date = datetime.strptime(d[1], "%d/%m/%Y")
+        """prende in input una data formattata "%d/%m/%Y" oppure un date e decide l'anno di partecipazione"""
+        if type(d) == str:
+            date = datetime.strptime(d[1], "%d/%m/%Y")
+        else:
+            date = d
         if date.month >= 10:
             return Year(date.year, date.year + 1)
         else:
